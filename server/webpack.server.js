@@ -3,12 +3,12 @@ const path = require('path');
 module.exports = {
     // informing browser that we are creating bundle file for server rather than browser
     target: 'node',
-    input: './src/index.js',
+    entry: './src/index.js',
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'build')
     },
-    modules:{
+    module:{
         rules: [
             {
                 test: /\.js?$/,
