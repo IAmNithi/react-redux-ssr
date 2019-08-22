@@ -1,24 +1,10 @@
 const express = require('express');
-import React from 'react';
-import { renderToString } from 'react-dom/server';
-import Home from './Client/Component/Home';
+import renderer from './helpers/renderer';
 const app = express();
 
 app.use(express.static('public'));
 app.get('/', (req,res) => {
-    const content = renderToString(<Home />);
-    const html = `
-        <html>
-            <head>
-                <title>SSR APP</title>
-            </head>
-            <body>
-                <div id="root">${content}</div>
-                <script src="bundle.js"></script>
-            </body>
-        </html>
-    `;
-    res.send(html);
+    res.send(renderer());
 });
 app.listen(3000, () => {
     console.log('App Listening on Port 3000');
